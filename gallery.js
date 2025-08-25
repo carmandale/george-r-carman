@@ -16,7 +16,7 @@ class MemorialGallery {
     }
 
     async loadImages() {
-        // Complete list of all 167 optimized images
+        // Complete list of all 168 optimized images
         const imageFiles = [
             '0168.webp',
             '091F0767-73EA-4A5F-87A0-67D94FEA9088 Hilaire.webp',
@@ -117,6 +117,7 @@ class MemorialGallery {
             'IMG_4497.webp',
             'IMG_4649.webp',
             'IMG_4858.webp',
+            'IMG_5081 Hilaire.webp',
             'IMG_5148.webp',
             'IMG_5206 Caitlin.webp',
             'IMG_5977.webp',
