@@ -16,7 +16,7 @@ class MemorialGallery {
     }
 
     async loadImages() {
-        // Complete list of all 164 optimized images
+        // Complete list of all 165 optimized images
         const imageFiles = [
             '0168.webp',
             '091F0767-73EA-4A5F-87A0-67D94FEA9088 Hilaire.webp',
@@ -50,6 +50,7 @@ class MemorialGallery {
             'CE118AA6-4255-48A6-9AFF-E3A54D1AB02A Hilaire.webp',
             'D9CA6A1D-C892-448B-88A6-5D729591D22C Hilaire.webp',
             'DCC0BEBA-14E4-405E-BA3A-80EBE3E8E10D Hilaire.webp',
+            'dads-poem.webp',
             'DSC00146.webp',
             'DSC_0244.webp',
             'E289276D-B8D1-41E2-BE78-2F744EC91A4A Hilaire.webp',
