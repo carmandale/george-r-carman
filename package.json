@@ -1,0 +1,16 @@
+{
+  "name": "george-carman-memorial",
+  "version": "1.0.0",
+  "description": "Memorial page for George Ronald Carman",
+  "scripts": {
+    "optimize-images": "node optimize-images.js",
+    "build": "node optimize-images.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {},
+  "keywords": ["memorial", "gallery"],
+  "author": "Dale Carman",
+  "license": "MIT"
+}

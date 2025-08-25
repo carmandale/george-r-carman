@@ -65,6 +65,13 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .memorial-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
         
         .content {
@@ -190,6 +197,162 @@
             .content p {
                 font-size: 0.9rem;
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            
+            .gallery-image {
+                height: 120px;
+            }
+        }
+        
+        /* Gallery styles */
+        .gallery-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        
+        .gallery-section h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .gallery-section p {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+        }
+        
+        .photo-caption {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .slideshow-container {
+            text-align: center;
+            margin-bottom: 30px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .slideshow-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Modal styles */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .close-modal:hover {
+            color: #bbb;
+        }
+        
+        .modal-image {
+            max-width: 100%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .modal-info {
+            position: absolute;
+            bottom: 20px;
+            color: white;
+            font-size: 14px;
+            opacity: 0.8;
         }
         
         /* Print styles */
@@ -206,6 +369,10 @@
                 box-shadow: none;
                 border: 1px solid #ddd;
             }
+            
+            .gallery-section {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -220,17 +387,20 @@
         <div class="photo-container">
             <img src="dad.jpeg" 
                  alt="George Ronald Carman" 
-                 class="memorial-photo">
+                 class="memorial-photo"
+                 id="hero-photo"
+                 style="cursor: pointer;">
+            <p class="photo-caption">Click the photo above to view more memories</p>
         </div>
         
         <div class="content">
             <p><strong>George Ronald Carman</strong>, 84, of Fort Worth, Texas, passed away in his sleep on Friday morning, August 22, 2025.</p>
             
-            <p>George was born on July 14, 1941, in Tucumcari, New Mexico, to <strong>Charles B. Carman</strong> and <strong>Geraldine A. (Dodgen) Carman</strong>. He grew up with his brothers, <strong>Charles J. Carman</strong> and <strong>Jimmy P. Carman</strong>, and his sister, <strong>Karen Jinkerson</strong>. He served his country as a <strong>radioman in the United States Navy</strong> before dedicating his life to full-time ministry.</p>
+            <p>George was born on July 14, 1941, in Tucumcari, New Mexico, to <strong>Charles B. Carman</strong> and <strong>Geraldine A. (Dodgen) Carman</strong>. He grew up with his brothers, <strong>Charles J. Carman</strong> and <strong>Jimmy P. Carman</strong>, and his sister, <strong>Karen Sue Jinkerson</strong>. He served his country as a <strong>radioman in the United States Navy</strong> before dedicating his life to full-time ministry.</p>
             
             <p>In 1964, George married <strong>Hilda F. (Privitt) Carman</strong>, the love of his life. Together they built a marriage grounded in faith and adventure. Shortly after, George graduated from the <strong>Sunset School of Preaching</strong>, later earning both a <strong>Master of Ministry in Biblical Studies</strong> and a <strong>Doctor of Ministry in Biblical Studies</strong>. Their journey took them around the world as he served as a <strong>preacher and missionary to Thailand</strong>, teaching God's word and training young preachers across Asia and the United States. Their children grew up as part of this mission, sharing in the adventure before returning to the United States, where they finished school, married, and the family continued to grow in love and faith.</p>
             
-            <p>George and Hilda raised four children: <strong>Hilaire</strong>, together with her husband, Gene Johns; <strong>Stephanie</strong>, together with her husband, Jay Brewster; <strong>Stephen</strong>, together with his wife, Elizabeth Carman; and <strong>Dale</strong>, together with his wife, Erika Carman. George cherished his family and is survived by <strong>Hilda</strong>, his sister <strong>Karen Jinkerson</strong>, his four children, <strong>11 grandchildren</strong>, and <strong>22 great-grandchildren</strong>.</p>
+            <p>George and Hilda raised four children: <strong>Hilaire</strong>, together with her husband, Gene Johns; <strong>Stephanie</strong>, together with her husband, Jay Brewster; <strong>Stephen</strong>, together with his wife, Elizabeth Carman; and <strong>Dale</strong>, together with his wife, Erika Carman. George cherished his family and is survived by <strong>Hilda</strong>, his sister <strong>Karen Sue Jinkerson</strong>, his four children, <strong>11 grandchildren</strong>, and <strong>22 great-grandchildren</strong>.</p>
             
             <p>Standing <strong>6'4"</strong>, George was an impressive presence—but his heart was larger still. He was known for an <strong>amazing smile that could light up a room</strong>. Even in his final days, as cancer and dementia ravaged his body, he greeted caregivers with a smile that brightened their day. He loved golf, was an <strong>accomplished basketball player</strong> well into his later years, and had a remarkable gift for music—able to pick up and play nearly any instrument, from trombone to piano and more.</p>
             
@@ -251,6 +421,14 @@
             </div>
             <div class="scripture-ref">— 2 Timothy 4:7</div>
         </div>
+        
+        <div class="gallery-section">
+            <h2>Photo Gallery</h2>
+            <p>Browse through memories of George's life and family</p>
+            <div id="gallery-container"></div>
+        </div>
     </div>
+    
+    <script src="gallery.js?v=10"></script>
 </body>
 </html>
