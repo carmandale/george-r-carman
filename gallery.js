@@ -16,7 +16,7 @@ class MemorialGallery {
     }
 
     async loadImages() {
-        // Complete list of all 165 optimized images
+        // Complete list of all 166 optimized images
         const imageFiles = [
             '0168.webp',
             '091F0767-73EA-4A5F-87A0-67D94FEA9088 Hilaire.webp',
@@ -40,6 +40,7 @@ class MemorialGallery {
             '755046866632746124 Stephanie Brewster.webp',
             '79D66342-21E0-4866-8487-5C9C892FBA3E Hilaire.webp',
             '81B2F106-6970-4179-B49F-12C90302C7A6 Hilaire.webp',
+            '82FA644C-7B88-4175-BE4E-ADFF617CE4F6 Hilaire.webp',
             '85B956F0-010D-4AED-913D-215EB733115C Hilaire.webp',
             '86A5D8C1-802B-4569-B253-E8D7CAE04E5E Hilaire.webp',
             'A14BBF8F-1283-4728-B082-4EC635F78A0C Hilaire.webp',
