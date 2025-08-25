@@ -4,7 +4,8 @@
   "description": "Memorial page for George Ronald Carman",
   "scripts": {
     "optimize-images": "node optimize-images.js",
-    "build": "node optimize-images.js"
+    "robust-process": "node robust-image-processor.js",
+    "build": "node robust-image-processor.js"
   },
   "dependencies": {
     "sharp": "^0.33.0"
