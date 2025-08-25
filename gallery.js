@@ -16,7 +16,7 @@ class MemorialGallery {
     }
 
     async loadImages() {
-        // Complete list of all 166 optimized images
+        // Complete list of all 167 optimized images
         const imageFiles = [
             '0168.webp',
             '091F0767-73EA-4A5F-87A0-67D94FEA9088 Hilaire.webp',
@@ -44,6 +44,7 @@ class MemorialGallery {
             '85B956F0-010D-4AED-913D-215EB733115C Hilaire.webp',
             '86A5D8C1-802B-4569-B253-E8D7CAE04E5E Hilaire.webp',
             'A14BBF8F-1283-4728-B082-4EC635F78A0C Hilaire.webp',
+            'A574400A-B1CA-4942-B936-F48C78EBF836 Hilaire.webp',
             'B7AC28D4-F668-4D0D-BE52-2DC4726F6635 Hilaire.webp',
             'BC1D63CD-0649-420C-BE35-339CC343F7A1 Hilaire.webp',
             'C15FC055-326F-433C-ABAA-EC0A28697669 Hilaire.webp',
