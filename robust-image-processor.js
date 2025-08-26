@@ -90,6 +90,15 @@ class RobustImageProcessor {
                 .resize(width, height, { fit: 'inside', withoutEnlargement: true })
                 .toFile(outputPath);
             
+            // Track processed image for manifest
+            this.processedImages.push({
+                filename: path.basename(outputPath),
+                originalName: path.basename(inputPath),
+                processedAt: new Date().toISOString(),
+                inputPath: inputPath,
+                outputPath: outputPath
+            });
+            
             console.log(`✅ Processed: ${path.basename(inputPath)} → ${path.basename(outputPath)}`);
             return true;
             
