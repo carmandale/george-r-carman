@@ -189,6 +189,16 @@ class RobustImageProcessor {
         console.log(`❌ Failed: ${failCount} images`);
         console.log(`📁 Optimized images saved to: ${this.outputDir}/`);
         console.log(`🔧 All images processed with automatic orientation correction`);
+        
+        // Generate manifest for dynamic gallery loading
+        if (successCount > 0) {
+            console.log(`\n📝 Generating gallery manifest...`);
+            const manifestSuccess = await this.writeManifest();
+            if (manifestSuccess) {
+                console.log(`🚀 Gallery will automatically display ${successCount} images!`);
+                console.log(`💡 No manual editing of gallery.js required!`);
+            }
+        }
     }
 }
 
