@@ -9,7 +9,19 @@ class MemorialGallery {
     }
 
     async init() {
+        // Show loading state
+        this.showLoadingState();
+        
         await this.loadImages();
+        
+        // Hide loading state
+        this.hideLoadingState();
+        
+        if (this.images.length === 0) {
+            console.warn('⚠️ No images loaded - gallery will be empty');
+            return;
+        }
+        
         this.createGallery();
         this.setupEventListeners();
         this.startSlideshow();
