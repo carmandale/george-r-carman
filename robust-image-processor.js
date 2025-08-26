@@ -11,6 +11,7 @@ class RobustImageProcessor {
             maxWidth: 1200,
             maxHeight: 1200
         };
+        this.processedImages = [];
         
         if (!fs.existsSync(this.outputDir)) {
             fs.mkdirSync(this.outputDir);
@@ -89,11 +90,69 @@ class RobustImageProcessor {
                 .resize(width, height, { fit: 'inside', withoutEnlargement: true })
                 .toFile(outputPath);
             
+            // Track processed image for manifest
+            this.processedImages.push({
+                filename: path.basename(outputPath),
+                originalName: path.basename(inputPath),
+                processedAt: new Date().toISOString(),
+                inputPath: inputPath,
+                outputPath: outputPath
+            });
+            
             console.log(`✅ Processed: ${path.basename(inputPath)} → ${path.basename(outputPath)}`);
             return true;
             
         } catch (error) {
             console.error(`❌ Error processing ${inputPath}:`, error.message);
+            return false;
+        }
+    }
+
+    extractContributor(filename) {
+        const contributors = [
+            'Hilaire', 'Caitlin', 'Hanna', 'Stephanie Brewster'
+        ];
+        
+        for (const contributor of contributors) {
+            if (filename.includes(contributor)) {
+                return contributor;
+            }
+        }
+        return '';
+    }
+
+    generateManifest() {
+        const manifest = {
+            images: this.processedImages.map(img => ({
+                filename: img.filename,
+                contributor: this.extractContributor(img.filename),
+                processedAt: img.processedAt,
+                originalName: img.originalName
+            })),
+            count: this.processedImages.length,
+            generated: new Date().toISOString(),
+            version: '1.0.0'
+        };
+        
+        return manifest;
+    }
+
+    async writeManifest() {
+        try {
+            const manifest = this.generateManifest();
+            const manifestPath = path.join(this.outputDir, 'manifest.json');
+            
+            await fs.promises.writeFile(
+                manifestPath, 
+                JSON.stringify(manifest, null, 2), 
+                'utf8'
+            );
+            
+            console.log(`📝 Generated manifest: ${manifestPath}`);
+            console.log(`📊 Manifest contains ${manifest.count} images`);
+            return true;
+        } catch (error) {
+            console.error('❌ Error writing manifest:', error.message);
             return false;
         }
     }
@@ -130,6 +189,16 @@ class RobustImageProcessor {
         console.log(`❌ Failed: ${failCount} images`);
         console.log(`📁 Optimized images saved to: ${this.outputDir}/`);
         console.log(`🔧 All images processed with automatic orientation correction`);
+        
+        // Generate manifest for dynamic gallery loading
+        if (successCount > 0) {
+            console.log(`\n📝 Generating gallery manifest...`);
+            const manifestSuccess = await this.writeManifest();
+            if (manifestSuccess) {
+                console.log(`🚀 Gallery will automatically display ${successCount} images!`);
+                console.log(`💡 No manual editing of gallery.js required!`);
+            }
+        }
     }
 }
 
