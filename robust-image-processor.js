@@ -11,6 +11,7 @@ class RobustImageProcessor {
             maxWidth: 1200,
             maxHeight: 1200
         };
+        this.processedImages = [];
         
         if (!fs.existsSync(this.outputDir)) {
             fs.mkdirSync(this.outputDir);
