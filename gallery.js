@@ -237,6 +237,49 @@ class MemorialGallery {
             slideshowContainer.style.opacity = '1';
         }, 300);
     }
+
+    showLoadingState() {
+        // Add loading indicator to the gallery container if it exists
+        const galleryContainer = document.getElementById('gallery-container');
+        if (galleryContainer) {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'gallery-loading';
+            loadingDiv.style.cssText = `
+                text-align: center;
+                padding: 40px;
+                color: #666;
+                font-style: italic;
+            `;
+            loadingDiv.innerHTML = '🔄 Loading gallery images...';
+            galleryContainer.appendChild(loadingDiv);
+        }
+    }
+
+    hideLoadingState() {
+        const loadingDiv = document.getElementById('gallery-loading');
+        if (loadingDiv) {
+            loadingDiv.remove();
+        }
+    }
+
+    showErrorMessage(message) {
+        const galleryContainer = document.getElementById('gallery-container');
+        if (galleryContainer) {
+            const errorDiv = document.createElement('div');
+            errorDiv.id = 'gallery-error';
+            errorDiv.style.cssText = `
+                text-align: center;
+                padding: 40px;
+                color: #d32f2f;
+                background-color: #ffebee;
+                border: 1px solid #ffcdd2;
+                border-radius: 8px;
+                margin: 20px 0;
+            `;
+            errorDiv.innerHTML = `❌ ${message}`;
+            galleryContainer.appendChild(errorDiv);
+        }
+    }
 }
 
 // Initialize gallery when page loads
