@@ -99,6 +99,55 @@ class RobustImageProcessor {
         }
     }
 
+    extractContributor(filename) {
+        const contributors = [
+            'Hilaire', 'Caitlin', 'Hanna', 'Stephanie Brewster'
+        ];
+        
+        for (const contributor of contributors) {
+            if (filename.includes(contributor)) {
+                return contributor;
+            }
+        }
+        return '';
+    }
+
+    generateManifest() {
+        const manifest = {
+            images: this.processedImages.map(img => ({
+                filename: img.filename,
+                contributor: this.extractContributor(img.filename),
+                processedAt: img.processedAt,
+                originalName: img.originalName
+            })),
+            count: this.processedImages.length,
+            generated: new Date().toISOString(),
+            version: '1.0.0'
+        };
+        
+        return manifest;
+    }
+
+    async writeManifest() {
+        try {
+            const manifest = this.generateManifest();
+            const manifestPath = path.join(this.outputDir, 'manifest.json');
+            
+            await fs.promises.writeFile(
+                manifestPath, 
+                JSON.stringify(manifest, null, 2), 
+                'utf8'
+            );
+            
+            console.log(`📝 Generated manifest: ${manifestPath}`);
+            console.log(`📊 Manifest contains ${manifest.count} images`);
+            return true;
+        } catch (error) {
+            console.error('❌ Error writing manifest:', error.message);
+            return false;
+        }
+    }
+
     async processAllImages() {
         const picsDir = 'pics';
         const files = fs.readdirSync(picsDir);
